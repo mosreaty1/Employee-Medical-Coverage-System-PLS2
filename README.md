@@ -7,21 +7,6 @@ A comprehensive web-based system for managing employee medical coverage, benefic
 ![MongoDB](https://img.shields.io/badge/mongodb-4.4+-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Demo](#demo)
-- [Technologies](#technologies)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [API Documentation](#api-documentation)
-- [Database Schema](#database-schema)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## ✨ Features
 
 ### Core Functionality
