@@ -326,21 +326,6 @@ curl http://localhost:5000/api/dashboard
 }
 ```
 
-## 📸 Screenshots
-
-### Dashboard
-The main dashboard showing statistics and charts for service usage and coverage distribution.
-
-### Employee Management
-CRUD interface for managing employee records with search and filter capabilities.
-
-### Billing & Claims
-Process insurance claims with automatic coverage calculations and status tracking.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ### Development Guidelines
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
