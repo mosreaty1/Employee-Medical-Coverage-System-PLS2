@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Medical Coverage System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-user-md"></i>
+                <h1>MedCare Pro</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </button>
+                <button class="nav-btn" data-section="employees">
+                    <i class="fas fa-users"></i>
+                    Employees
+                </button>
+                <button class="nav-btn" data-section="beneficiaries">
+                    <i class="fas fa-user-friends"></i>
+                    Beneficiaries
+                </button>
+                <button class="nav-btn" data-section="services">
+                    <i class="fas fa-stethoscope"></i>
+                    Services
+                </button>
+                <button class="nav-btn" data-section="billing">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Billing
+                </button>
+                <button class="nav-btn" data-section="policies">
+                    <i class="fas fa-shield-alt"></i>
+                    Policies
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h2>Dashboard Overview</h2>
+                    <button class="btn-primary" onclick="refreshDashboard()">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-employees">0</h3>
+                            <p>Total Employees</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-beneficiaries">0</h3>
+                            <p>Total Beneficiaries</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-services">0</h3>
+                            <p>Services Used</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-billing">$0</h3>
+                            <p>Total Billing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>Monthly Service Usage</h3>
+                        <canvas id="serviceChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Coverage Distribution</h3>
+                        <canvas id="coverageChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Employees Section -->
+            <section id="employees" class="section">
+                <div class="section-header">
+                    <h2>Employee Management</h2>
+                    <button class="btn-primary" onclick="openEmployeeModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Employee
+                    </button>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" id="employee-search" placeholder="Search employees...">
+                    <button onclick="searchEmployees()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="employees-table">
+                        <thead>
+                            <tr>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Department</th>
+                                <th>Position</th>
+                                <th>Coverage Plan</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employees-tbody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Beneficiaries Section -->
+            <section id="beneficiaries" class="section">
+                <div class="section-header">
+                    <h2>Beneficiary Management</h2>
+                    <button class="btn-primary" onclick="openBeneficiaryModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Beneficiary
+                    </button>
+                </div>
+                
+                <div class="filter-bar">
+                    <select id="beneficiary-filter">
+                        <option value="all">All Beneficiaries</option>
+                        <option value="spouse">Spouse</option>
+                        <option value="child">Child</option>
+                        <option value="parent">Parent</option>
+                    </select>
+                    <input type="text" id="beneficiary-search" placeholder="Search beneficiaries...">
+                </div>
+                
+                <div class="table-container">
+                    <table id="beneficiaries-table">
+                        <thead>
+                            <tr>
+                                <th>Beneficiary ID</th>
+                                <th>Name</th>
+                                <th>Relationship</th>
+                                <th>Employee</th>
+                                <th>Coverage</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="beneficiaries-tbody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="section">
+                <div class="section-header">
+                    <h2>Medical Services</h2>
+                    <button class="btn-primary" onclick="openServiceModal()">
+                        <i class="fas fa-plus"></i>
+                        Record Service
+                    </button>
+                </div>
+                
+                <div class="service-filters">
+                    <select id="service-type-filter">
+                        <option value="all">All Services</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="diagnostic">Diagnostic</option>
+                        <option value="treatment">Treatment</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                    <input type="date" id="service-date-filter">
+                    <input type="text" id="service-search" placeholder="Search services...">
+                </div>
+                
+                <div class="table-container">
+                    <table id="services-table">
+                        <thead>
+                            <tr>
+                                <th>Service ID</th>
+                                <th>Date</th>
+                                <th>Patient</th>
+                                <th>Service Type</th>
+                                <th>Provider</th>
+                                <th>Cost</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="services-tbody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Billing Section -->
+            <section id="billing" class="section">
+                <div class="section-header">
+                    <h2>Billing & Claims</h2>
+                    <button class="btn-primary" onclick="generateBillReport()">
+                        <i class="fas fa-file-pdf"></i>
+                        Generate Report
+                    </button>
+                </div>
+                
+                <div class="billing-summary">
+                    <div class="summary-card">
+                        <h3>Pending Claims</h3>
+                        <p id="pending-claims">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Processed Claims</h3>
+                        <p id="processed-claims">0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Amount</h3>
+                        <p id="total-amount">$0.00</p>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="billing-table">
+                        <thead>
+                            <tr>
+                                <th>Claim ID</th>
+                                <th>Service Date</th>
+                                <th>Patient</th>
+                                <th>Service</th>
+                                <th>Amount</th>
+                                <th>Coverage</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billing-tbody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Policies Section -->
+            <section id="policies" class="section">
+                <div class="section-header">
+                    <h2>Coverage Policies</h2>
+                    <button class="btn-primary" onclick="openPolicyModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Policy
+                    </button>
+                </div>
+                
+                <div class="policies-grid">
+                    <div class="policy-card">
+                        <h3>Basic Coverage</h3>
+                        <div class="policy-details">
+                            <p><strong>Annual Limit:</strong> $5,000</p>
+                            <p><strong>Deductible:</strong> $500</p>
+                            <p><strong>Coverage:</strong> 80%</p>
+                        </div>
+                        <button class="btn-secondary" onclick="editPolicy('basic')">Edit</button>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Premium Coverage</h3>
+                        <div class="policy-details">
+                            <p><strong>Annual Limit:</strong> $15,000</p>
+                            <p><strong>Deductible:</strong> $250</p>
+                            <p><strong>Coverage:</strong> 90%</p>
+                        </div>
+                        <button class="btn-secondary" onclick="editPolicy('premium')">Edit</button>
+                    </div>
+                    
+                    <div class="policy-card">
+                        <h3>Family Coverage</h3>
+                        <div class="policy-details">
+                            <p><strong>Annual Limit:</strong> $25,000</p>
+                            <p><strong>Deductible:</strong> $200</p>
+                            <p><strong>Coverage:</strong> 95%</p>
+                        </div>
+                        <button class="btn-secondary" onclick="editPolicy('family')">Edit</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title">Modal Title</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
