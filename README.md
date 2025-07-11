@@ -41,11 +41,6 @@ A comprehensive web-based system for managing employee medical coverage, benefic
 - 🗄️ MongoDB Atlas cloud database integration
 - 🔒 RESTful API with proper error handling
 
-## 🚀 Demo
-
-### Live Demo
-*Coming soon*
-
 ### Test Credentials
 The system comes with pre-populated sample data:
 - Employee IDs: EMP001, EMP002, EMP003
@@ -406,10 +401,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email support@medcarepro.com or create an issue in this repository.
+For support: alsariti1@gmail.com
 
 ---
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by Mohamed Alsariti
 
 **Note**: This is a demonstration project. For production use, please implement proper security measures including authentication, authorization, input validation, and environment-based configuration.
+<img width="1920" height="1080" alt="Screenshot (374)" src="https://github.com/user-attachments/assets/150cae7a-c85b-4589-a9d9-9e574733b895" />
+<img width="1920" height="1080" alt="Screenshot (375)" src="https://github.com/user-attachments/assets/7e448878-9327-4a19-9364-5ca363db5d9e" />
+<img width="1920" height="1080" alt="Screenshot (376)" src="https://github.com/user-attachments/assets/5520fd59-dbc3-44e9-ac4e-f1d337558ce3" />
+<img width="1920" height="1080" alt="Screenshot (377)" src="https://github.com/user-attachments/assets/480f5295-0c45-4871-8442-2dee49f2cb7c" />
+<img width="1920" height="1080" alt="Screenshot (379)" src="https://github.com/user-attachments/assets/a1f8521e-5b66-4a0a-bbfd-5139047caa75" />
+
+
